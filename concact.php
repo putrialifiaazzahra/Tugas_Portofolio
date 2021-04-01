@@ -16,14 +16,6 @@ if(isset($_POST['submit'])) {
         
         header('location: index.php?success');
     }
-    
 
-	// $sql = "INSERT INTO concact (nama, email, pesan) VALUES ('$nama', '$email', '$pesan')";
-    // $query = mysqli_query($connect,$sql);
-    // if ($query) {
-    //     header('location: index.php');
-    // }else{
-    //     header('location: concact.php?status=gagal');
-    // }
 }
 ?>

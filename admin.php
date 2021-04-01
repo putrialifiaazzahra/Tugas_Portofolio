@@ -47,13 +47,14 @@ include 'koneksi.php';
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container">
         <a class="navbar-brand fw-bold" href="">
-          <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-              Admin
+            <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                Admin
+            </a>
+            <ul class="dropdown-menu ms-2" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="index.php">User</a></li>
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
           </a>
-          <ul class="dropdown-menu ms-2" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="index.php">User</a></li>
-          </ul>
-        </a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
@@ -84,13 +85,21 @@ include 'koneksi.php';
     </svg>
 
     <section class="jumbotron text-center">
-      <img src="icon pp.png" alt="" width="200" class="rounded-circle img-thumbnail" />
-      <h1 class="display-5">Putri Alifia Azzahra</h1>
-      <p class="lead">Student</p>
-      <button type="button" class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-        </svg> Edit</button>
+    <?php
+
+            $sql = "SELECT * FROM profil";
+            $query = mysqli_query($connect,$sql);
+
+            while($id_profil = mysqli_fetch_array($query)) {
+              echo "<img src='".$id_profil['foto_profil']."' alt='' width='260' class='rounded-circle img-thumbnail' />";
+              echo "<h1 class='display-5'>".$id_profil['nama_profil']."</h1>";
+              echo "<p class='lead'>".$id_profil['status']."</p>";
+              echo "<a href='formeditpp.php' class='btn btn-outline-primary'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
+                <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
+                <path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z'/>
+                </svg> Edit</a>";
+            }		
+          ?>
     </section>
     <!-- Akhir Jumbotron -->
 
@@ -107,20 +116,32 @@ include 'koneksi.php';
       <div class="container">
         <div class="row text-center mb-4">
           <div class="col">
-            <h2>About Me</h2>
+            <h2 class="mb-4">About Me</h2>
           </div>
         </div>
-        <div class="row justify-content-evenly fs-5">
-          <div class="col-md">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque dicta omnis animi, excepturi nostrum, culpa aliquam quam necessitatibus sequi tenetur ex qui consectetur enim hic deserunt unde tempore non incidunt?</p>
-          </div>
-          <div class="col-md">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut praesentium dolorum excepturi voluptate corporis, aspernatur voluptates provident aliquid illum vel suscipit eligendi rerum, maxime ad magnam voluptas tempore
-              necessitatibus itaque laudantium, libero nesciunt tempora laborum pariatur in? Saepe, assumenda dolore?
-            </p>
-          </div>
-        </div>
+          <!-- About db -->
+          <?php
+                
+                $sql = "SELECT * FROM about";
+                $query = mysqli_query($connect,$sql);
+
+                while($id_about = mysqli_fetch_array($query)){
+                        echo "<div class='row justify-content-evenly fs-5 text-left' style='white-space: pre-line;'>";
+                        echo "<div class='col-md'>";
+                        echo "<p>". $id_about['about1'] ."</p>";
+                        echo "</div>";
+                        echo "<div class='col-md'>";
+                        echo "<p>". $id_about['about2'] ."</p>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<a href='formabout.php' class='btn btn-outline-light form-control'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
+                          <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
+                          <path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z'/>
+                          </svg> Edit</a>";
+                }
+
+            ?>
+            <!-- Akhir About db -->
       </div>
     </section>
     <!-- Akhir About -->
@@ -141,32 +162,42 @@ include 'koneksi.php';
             <h2>Gallery</h2>
           </div>
         </div>
-        <div class="row justify-content-evenly">
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <img src="img/pict1.png" class="card-img-top" alt="Project 1" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <img src="img/pict2.png" class="card-img-top" alt="Project 2" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <img src="img/pict3.png" class="card-img-top" alt="Project 3" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
+        <div style="overflow: auto; height: 400px; margin: 0 50px;">
+          <table class="table">
+            <tr>
+                <th>Foto</th>
+                <th>keterangan</th>
+                <th>Action</th>
+            </tr>
+            <!-- Gallery DB -->
+            <?php
+
+            $sql = "SELECT * FROM gallery";
+            $query = mysqli_query($connect,$sql);
+
+            while($id_gallery = mysqli_fetch_array($query)) {
+              echo "<tr>";
+              echo "<td><img src='".$id_gallery['foto']."' width='250px'; ></td>";
+              echo "<td>".$id_gallery['keterangan']."</td>";
+              echo "<td>";
+              echo "<a href='formeditfoto.php?id_gallery=".$id_gallery['id_gallery']."' class='mr-4'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='Green' class='bi bi-pencil' viewBox='0 0 16 16'>
+                        <path d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z'/>
+                      </svg></a> | ";
+              echo "<a href='hapusfoto.php?id_gallery=".$id_gallery['id_gallery']."'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='Red' class='bi bi-trash' viewBox='0 0 16 16'>
+                    <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
+                    <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>
+                  </svg></a>";
+              echo "</td>";
+              echo "</tr>";
+            }		
+            ?>
+            <!-- Akhir Gallery DB -->
+          </table>
         </div>
+        <a href="tambahfoto.php" class="btn btn-outline-primary form-control mt-4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg> Tambah Foto</a>
       </div>
     </section>
     <!-- Akhir Gallery -->
@@ -188,7 +219,8 @@ include 'koneksi.php';
           </div>
         </div>
         <div class="row justify-content-evenly">
-          <div class="col-10">
+          <div class="col-10" style="overflow: auto; height: 370px;">
+          <!-- Concact DB -->
           <?php
 
             $sql = "SELECT * FROM concact";
@@ -203,19 +235,9 @@ include 'koneksi.php';
                 echo "<a href='hapusconcact.php?pesan=".$pesan['pesan']."'class='btn btn-outline-danger' style='float: right;'>Delete</a>";
                 echo "</div>";
                 echo "</div>";
-                // echo "<tr>";
-                // echo "<td>".$pesan['nama']."</td>";
-                // echo "<td>".$pesan['email']."</td>";
-                // echo "<td>".$pesan['pesan']."</td>";
-                // echo "<td>";
-                // echo "<a href='hapusconcact.php?pesan=".$pesan['pesan']."'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='Red' class='bi bi-trash' viewBox='0 0 16 16'>
-                // <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
-                // <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>
-                // </svg></a>";
-                // echo "</td>";
-                // echo "</tr>";
             }		
             ?>
+            <!-- Akhir Concact DB -->
           </div>
         </div>
       </div>
@@ -227,16 +249,5 @@ include 'koneksi.php';
       <p>Created by <a href="https://www.instagram.com/putrialifiaazzahra_/" class="text-white fw-bold">@putrialifiaazzahra</a></p>
     </footer>
     <!-- Akhir Footer -->
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-    -->
   </body>
 </html>
