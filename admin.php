@@ -1,9 +1,18 @@
 <?php
-include 'koneksi.php';
+
+session_start();
+require_once("koneksi.php");
+require_once("function.php");
+
+  if (!isset($_SESSION["login"])) {
+      header("location: login.php");
+      exit;
+  }
+
 ?>
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -19,7 +28,7 @@ include 'koneksi.php';
         }
 
         #about {
-            padding: 100px;
+            padding: 50px;
             background-color: #487eb0;
             color: white;
         }
@@ -47,14 +56,14 @@ include 'koneksi.php';
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container">
         <a class="navbar-brand fw-bold" href="">
-            <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-                Admin
-            </a>
-            <ul class="dropdown-menu ms-2" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="index.php">User</a></li>
-              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-            </ul>
+          <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+            Admin
           </a>
+          <ul class="dropdown-menu ms-2" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" href="index.php">User</a></li>
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+          </ul>
+        </a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
@@ -249,5 +258,16 @@ include 'koneksi.php';
       <p>Created by <a href="https://www.instagram.com/putrialifiaazzahra_/" class="text-white fw-bold">@putrialifiaazzahra</a></p>
     </footer>
     <!-- Akhir Footer -->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
   </body>
 </html>

@@ -1,15 +1,14 @@
-<?php
+<?php 
 
 session_start();
 
-$_SESSION['username'] = '';
+require_once("koneksi.php");
 
-unset($_SESSION['username']);
-
+$_SESSION = [];
 session_unset();
+
 session_destroy();
 
 header("location: login.php");
-
 
 ?>

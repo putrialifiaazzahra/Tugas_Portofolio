@@ -1,9 +1,10 @@
 <?php
 include "koneksi.php";
+
 ?>
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -19,7 +20,7 @@ include "koneksi.php";
         }
 
         #about {
-            padding: 100px;
+            padding: 50px;
             background-color: #487eb0;
             color: white;
         }
@@ -37,6 +38,11 @@ include "koneksi.php";
         footer {
             padding: 5px;
             background-color: #487eb0;
+        }
+
+        #gallery .card{
+            box-shadow: -8px 12px 18px 0 rgb(25, 42, 70, 0.13);
+            margin-bottom: 2.2rem;
         }
     </style>
 
@@ -57,7 +63,7 @@ include "koneksi.php";
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
@@ -155,7 +161,7 @@ include "koneksi.php";
           </div>
         </div>
         <!-- Gallery db -->
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-center">
         <?php
               
               $sql = "SELECT * FROM gallery";
@@ -163,7 +169,7 @@ include "koneksi.php";
 
               while($gallery = mysqli_fetch_array($query)){
                       echo '<div class="col-md-4 mb-3">';
-                      echo '<div class="card">';
+                      echo '<div class="card" style="width: 20rem;">';
                       echo '<img src="'. $gallery['foto'] .'" class="card-img-top" alt="ini foto">';
                       echo '<div class="card-body">';
                       echo '<p class="card-text">'. $gallery['keterangan'] .'</p>';
@@ -195,7 +201,7 @@ include "koneksi.php";
             <h2>Contact</h2>
           </div>
         </div>
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly text-start">
           <div class="col-md-6">
             <?php
               $email = "";
@@ -205,7 +211,7 @@ include "koneksi.php";
                 echo '<div class="alert alert-danger">'.$email.'</div>';
               }
             ?>
-            <form action="concact.php" method="POST">
+            <form action="concact.php" method="POST" style="font-size: 22px;">
               <div class="form-group">
                 <label>Nama Lengkap *</label>
                 <input type="text" class="form-control" name="nama"/>
@@ -232,5 +238,15 @@ include "koneksi.php";
     </footer>
     <!-- Akhir Footer -->
 
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
   </body>
 </html>
